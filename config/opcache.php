@@ -27,5 +27,8 @@ return [
         'Dumper',
         'Autoload',
     ],
+    /**
+     * not compile these files . E.g. test.php
+     */
     'not' => []
 ];
