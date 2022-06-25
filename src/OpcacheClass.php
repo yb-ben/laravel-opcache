@@ -53,11 +53,22 @@ class OpcacheClass
 
         if (function_exists('opcache_compile_file')) {
             $compiled = 0;
+            $notPath = config('opcache.not_path', []);
+            array_walk($notPath, function (&$item) {
+                $item = str_replace('\\', '/', $item);
+            });
 
             // Get files in these paths
             $files = collect(Finder::create()->in(config('opcache.directories'))
                 ->name('*.php')
-                ->notPath(config('opcache.not_path',[]))
+                ->filter(function(\SplFileInfo $fileInfo)use($notPath){
+                    foreach ($notPath as $item) {
+                        if (false !== mb_strpos(str_replace('\\', '/', $fileInfo->getPathname()), $item)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
                 ->ignoreUnreadableDirs()
                 ->notContains('#!/usr/bin/env php')
                 ->exclude(config('opcache.exclude'))
