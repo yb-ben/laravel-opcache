@@ -33,15 +33,16 @@ class Config extends Command
         $response = $this->sendRequest('config');
         $response->throw();
 
-        if ($response['result']) {
+        if (!empty($response['result'])) {
             $this->line('Version info:');
             $this->table([], $this->parseTable($response['result']['version']));
 
             $this->line(PHP_EOL.'Configuration info:');
             $this->table([], $this->parseTable($response['result']['directives']));
         } else {
-            $this->error('OPcache not configured');
 
+            $this->warn('result failed!');
+            $this->output->info($response->body());
             return 2;
         }
     }

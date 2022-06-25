@@ -1,5 +1,5 @@
 {
-    "name": "appstract/laravel-opcache",
+    "name": "h2022/laravel-opcache",
     "description": "PHP OPcache Artisan commands for Laravel.",
     "keywords": [
         "appstract",
@@ -9,14 +9,6 @@
     ],
     "homepage": "https://github.com/appstract/laravel-opcache",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Olav van Schie",
-            "email": "mail@appstract.nl",
-            "homepage": "https://appstract.nl",
-            "role": "Developer"
-        }
-    ],
     "require": {
         "php": ">=7.2.5",
         "laravel/framework": ">=7.0",

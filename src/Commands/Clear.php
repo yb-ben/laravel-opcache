@@ -33,10 +33,11 @@ class Clear extends Command
         $response = $this->sendRequest('clear');
         $response->throw();
 
-        if ($response['result']) {
+        if (!empty($response['result'])) {
             $this->info('OPcache cleared');
         } else {
-            $this->error('OPcache not configured');
+            $this->warn('result failed!');
+            $this->output->info($response->body());
 
             return 2;
         }

@@ -33,16 +33,20 @@ class Compile extends Command
         $response = $this->sendRequest('compile', ['force' => $this->option('force') ?? false]);
         $response->throw();
 
-        if (isset($response['result']['message'])) {
-            $this->warn($response['result']['message']);
+        if (isset($response['result'])) {
+            if (isset($response['result']['message'])) {
+                $this->warn($response['result']['message']);
 
-            return 1;
-        } elseif ($response['result']) {
-            $this->info(sprintf('%s of %s files compiled', $response['result']['compiled_count'], $response['result']['total_files_count']));
-        } else {
-            $this->error('OPcache not configured');
-
-            return 2;
+                return 1;
+            } else {
+                $this->info(sprintf('%s of %s files compiled', $response['result']['compiled_count'], $response['result']['total_files_count']));
+                return 1;
+            }
+        }else{
+                $this->warn('result failed!');
+                $this->output->info($response->body());
+                return 2;
         }
+
     }
 }

@@ -33,11 +33,11 @@ class Status extends Command
         $response = $this->sendRequest('status');
         $response->throw();
 
-        if ($response['result']) {
+        if (!empty($response['result'])) {
             $this->displayTables($response['result']);
         } else {
-            $this->error('OPcache not configured');
-
+            $this->warn('result failed!');
+            $this->output->info($response->body());
             return 2;
         }
     }
