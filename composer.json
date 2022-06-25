@@ -7,7 +7,7 @@
         "laravel",
         "php"
     ],
-    "homepage": "https://github.com/appstract/laravel-opcache",
+    "homepage": "https://github.com/yb-ben/laravel-opcache",
     "license": "MIT",
     "require": {
         "php": ">=7.2.5",
