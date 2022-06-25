@@ -28,7 +28,7 @@ return [
         'Autoload',
     ],
     /**
-     * not compile these files . E.g. test.php
+     * not compile these files . E.g.  a/b.php , a/c.php
      */
-    'not' => []
+    'not_path' => []
 ];

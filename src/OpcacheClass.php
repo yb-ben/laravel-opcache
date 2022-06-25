@@ -57,7 +57,7 @@ class OpcacheClass
             // Get files in these paths
             $files = collect(Finder::create()->in(config('opcache.directories'))
                 ->name('*.php')
-                ->notName(config('opcache.not',[]))
+                ->notPath(config('opcache.not_path',[]))
                 ->ignoreUnreadableDirs()
                 ->notContains('#!/usr/bin/env php')
                 ->exclude(config('opcache.exclude'))
